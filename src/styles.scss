@@ -1,0 +1,279 @@
+
+$cat: #131213;
+$cat-eyes: #75637e;
+
+body {
+  margin: 0;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  cursor: default;
+}
+
+.wall {
+  width: 100%;
+  height: 70%;
+  background-image: url(),
+    linear-gradient(
+      to right,
+      rgb(117, 82, 116),
+      rgb(183, 174, 216),
+      rgb(117, 82, 116),
+      rgb(94, 66, 83),
+      rgb(43, 32, 39)
+    );
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.star {
+  font-size: 30px;
+  margin-left: -20px;
+  margin-bottom: -10px;
+  animation: spin 4s linear infinite alternate;
+  z-index: 3;
+}
+
+.globe {
+  position: absolute;
+  font-size: 15px;
+  z-index: 3;
+  animation: shine 3s 1s infinite alternate-reverse;
+}
+
+.branches {
+  animation: dancing_tree 0.5s infinite alternate;
+  z-index: 2;
+  margin-bottom: 120px;
+}
+
+.branch {
+  border-right: 2px solid rgb(112, 52, 52);
+  width: 45px;
+  height: 1px;
+  background: rgb(26, 44, 26);
+}
+
+.branch_bg {
+  position: absolute;
+  height: 5px;
+  width: 40px;
+  background-image: linear-gradient(
+    to left,
+    rgba(118, 158, 118, 0.7) 20%,
+    rgba(38, 128, 51, 0.7) 30%,
+    rgba(25, 58, 25, 0.5)
+  );
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.trunk {
+  background: linear-gradient(
+    to left,
+    rgb(158, 134, 118) 20%,
+    rgb(155, 83, 61) 30%,
+    rgb(58, 33, 25)
+  );
+  height: 50px;
+  width: 12px;
+  border-radius: 10px 2px 5px 4px;
+  transform: translateX(-3px);
+  z-index: 1;
+}
+
+.gift {
+  position: absolute;
+  top: 70%;
+  z-index: 1;
+}
+
+.floor {
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(
+    to top,
+    rgb(148, 97, 67),
+    rgb(58, 33, 25),
+    rgb(128, 59, 38),
+    rgb(58, 33, 25),
+    rgb(128, 59, 38),
+    #9e4f42,
+    #b05945
+  );
+}
+
+.cat *,
+.cat *::before,
+.cat *::after,
+.cat::before,
+.cat::after {
+  position: absolute;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.cat {
+  position: absolute;
+  color: $cat;
+  background: #141214;
+  height: 120px;
+  width: 150px;
+  bottom: 0;
+  right: 20px;
+  border-radius: 6px 50% 0 0;
+  transform: scaleX(-1);
+
+  .head {
+    background: $cat;
+    left: 0;
+    bottom: 35px;
+    width: 70px;
+    height: 125px;
+    border-radius: 55px 45px 0 0;
+    animation: head-move 6s -2s infinite alternate;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      top: 12px;
+      border-bottom: 30px solid;
+      background: $cat;
+    }
+
+    &::before {
+      border-right: 20px solid transparent;
+      animation: ears-move-l 6s infinite alternate;
+    }
+
+    &::after {
+      border-left: 20px solid transparent;
+      right: 0;
+      animation: ears-move-r 6s infinite alternate;
+    }
+
+    .eyes {
+      border-radius: 50%;
+      width: 7px;
+      height: 7px;
+      background: $cat-eyes;
+      top: 20px;
+      left: 10px;
+      z-index: 1;
+      box-shadow: 25px 0 0 $cat-eyes;
+      animation: eyes-move 6s -0.5s infinite alternate;
+    }
+  }
+
+  .tail {
+    width: 100px;
+    height: 0;
+    color: inherit;
+    bottom: 0;
+    left: 100%;
+    border: 20px solid;
+    border-left: 0;
+    border-top: 0;
+    border-radius: 0 0 50px 0;
+    animation: tail 10s infinite;
+
+    &::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: $cat;
+      border-radius: 50%;
+      margin-top: -10px;
+      right: -20px;
+    }
+  }
+}
+ 
+
+span::selection {
+  background: transparent;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dancing_tree {
+  0% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes head-move {
+  25%, 100% {
+    transform: translate3d(0, 5px, 0)
+  }
+}
+
+@keyframes ears-move-l {
+  25%, 100% {
+    transform: translate3d(8px, -10px, 0)
+  }
+}
+
+@keyframes ears-move-r {
+  25%, 100% {
+    transform: translate3d(-3px, -10px, 0)
+  }
+}
+
+@keyframes eyes-move {
+  25%, 100% {
+    transform: translate3d(20px, -8px, 0)
+  }
+}
+
+@keyframes tail {
+  10%, 30% {
+  height: 6vh;
+  width: 15vh;
+  }
+  20%, 35%, 75%, 100% {
+  height: 0;
+  width: 22vh;
+  }
+  60% {
+    height: 4vh;
+    width: 20vh;
+  }
+}
